@@ -8,12 +8,12 @@ pipeline {
 	    		}
 	    }
 	    
-	    stage('Publish Pact'){
-	        steps{
-	            sh './gradlew pactPublish -Dpact.consumer.version=${GIT_COMMIT} -Dpact.tag=${BRANCH_NAME}'
-	        }
+	    //stage('Publish Pact'){
+	      //  steps{
+	        //    sh './gradlew pactPublish -Dpact.consumer.version=${GIT_COMMIT} -Dpact.tag=${BRANCH_NAME}'
+	        //}
 
-	    }
+	    //}
 
 
 
