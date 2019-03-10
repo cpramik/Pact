@@ -1,0 +1,239 @@
+{
+    "provider": {
+        "name": "userservice"
+    },
+    "consumer": {
+        "name": "test_consumer"
+    },
+    "interactions": [
+        {
+            "description": "A request to create user on /users",
+            "request": {
+                "method": "POST",
+                "path": "/users",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "phone": "123456789",
+                    "name": "user1"
+                },
+                "matchingRules": {
+                    "body": {
+                        "$.name": {
+                            "matchers": [
+                                {
+                                    "match": "type"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.phone": {
+                            "matchers": [
+                                {
+                                    "match": "type"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    }
+                }
+            },
+            "response": {
+                "status": 201,
+                "headers": {
+                    "Content-Type": "application/json; charset=UTF-8"
+                },
+                "body": {
+                    "id": 200
+                },
+                "matchingRules": {
+                    "body": {
+                        "$.id": {
+                            "matchers": [
+                                {
+                                    "match": "number"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    },
+                    "header": {
+                        "Content-Type": {
+                            "matchers": [
+                                {
+                                    "match": "regex",
+                                    "regex": "application/json(;\\s?charset=[\\w\\-]+)?"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    }
+                }
+            },
+            "providerStates": [
+                {
+                    "name": "Create New User"
+                }
+            ]
+        },
+        {
+            "description": "A request to /users",
+            "request": {
+                "method": "GET",
+                "path": "/users"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": {
+                    "address": "asdas",
+                    "name": "pramik",
+                    "userId": 100
+                },
+                "matchingRules": {
+                    "body": {
+                        "$.name": {
+                            "matchers": [
+                                {
+                                    "match": "type"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.userId": {
+                            "matchers": [
+                                {
+                                    "match": "integer"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.address": {
+                            "matchers": [
+                                {
+                                    "match": "type"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    }
+                }
+            },
+            "providerStates": [
+                {
+                    "name": "GET all users"
+                }
+            ]
+        },
+        {
+            "description": "A request to /users/1",
+            "request": {
+                "method": "GET",
+                "path": "/users/1"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json; charset=UTF-8"
+                },
+                "body": {
+                    "lastLogin": "2018-10-16T12:34:12",
+                    "role": "ADMIN",
+                    "name": "contract test",
+                    "friends": [
+                        {
+                            "name": "a friend",
+                            "id": "2"
+                        },
+                        {
+                            "name": "a friend",
+                            "id": "2"
+                        }
+                    ]
+                },
+                "matchingRules": {
+                    "body": {
+                        "$.name": {
+                            "matchers": [
+                                {
+                                    "match": "type"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.lastLogin": {
+                            "matchers": [
+                                {
+                                    "match": "timestamp",
+                                    "timestamp": "yyyy-MM-dd'T'HH:mm:ss"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.role": {
+                            "matchers": [
+                                {
+                                    "match": "regex",
+                                    "regex": "ADMIN|USER"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.friends": {
+                            "matchers": [
+                                {
+                                    "match": "type",
+                                    "min": 0
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.friends[*].id": {
+                            "matchers": [
+                                {
+                                    "match": "type"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.friends[*].name": {
+                            "matchers": [
+                                {
+                                    "match": "type"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    },
+                    "header": {
+                        "Content-Type": {
+                            "matchers": [
+                                {
+                                    "match": "regex",
+                                    "regex": "application/json(;\\s?charset=[\\w\\-]+)?"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    }
+                }
+            },
+            "providerStates": [
+                {
+                    "name": "User 1 exists"
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "pactSpecification": {
+            "version": "3.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.6.2"
+        }
+    }
+}
