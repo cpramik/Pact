@@ -61,7 +61,7 @@ pact {
 			version = "2.0.1"
 			pactDirectory = 'pacts' // defaults to $buildDir/pacts
 			//pactBrokerUrl = 'https://cpramik.pact.dius.com.au'
-			pactBrokerUrl = 'http://localhost'
+			pactBrokerUrl = 'http://localhost:80'
 			//pactBrokerUsername = 'rkoi3a2zofejmvwdqrlnoa'
 			//pactBrokerPassword = 'cl1273g7akvjzzyyhn712'
 		}
@@ -84,7 +84,7 @@ pact {
 				//You need to publish Pact to broker first by running pactPublish command
 				
 				//hasPactsFromPactBroker('https://cpramik.pact.dius.com.au', authentication: ['Basic','rkoi3a2zofejmvwdqrlnoa', 'cl1273g7akvjzzyyhn712'])
-				hasPactsFromPactBroker('http://localhost')
+				hasPactsFromPactBroker('http://localhost:80')
 			}
 		}
 		
