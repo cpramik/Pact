@@ -76,15 +76,15 @@ pact {
 		        project.version = "2.0.1"
 				
 				//Verifying pact from Local. Comment the below lines and uncomment hasPactsFromPactBroker if you need to verify results from broker
-				/*hasPactsWith('test_consumer') {
+				hasPactsWith('test_consumer') {
 		            pactFileLocation = file('pacts') 
-				}*/
+				}
 				
 				//Run pactVerify task if you need to send the verification results back to PactBroker. Provide the pactUrl, pactUser, pactPassword in Gradle.properties file
 				//You need to publish Pact to broker first by running pactPublish command
 				
 				//hasPactsFromPactBroker('https://cpramik.pact.dius.com.au', authentication: ['Basic','rkoi3a2zofejmvwdqrlnoa', 'cl1273g7akvjzzyyhn712'])
-				hasPactsFromPactBroker('http://localhost')
+				//hasPactsFromPactBroker('http://localhost')
 			}
 		}
 		
